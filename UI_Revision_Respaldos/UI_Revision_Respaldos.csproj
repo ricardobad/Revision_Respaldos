@@ -46,14 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\frm_AddPath.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\frm_AddPath.Designer.cs">
+      <DependentUpon>frm_AddPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_Main.Designer.cs">
+      <DependentUpon>frm_Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\frm_AddPath.resx">
+      <DependentUpon>frm_AddPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_Main.resx">
+      <DependentUpon>frm_Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -85,6 +97,15 @@
       <Project>{2c38f711-29e1-458d-b3b8-a6f3221b5ce9}</Project>
       <Name>DAL_Revision_Respaldos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Files\Pictures\bkp_error.png" />
+    <Content Include="Files\Pictures\bkp_logo.ico" />
+    <Content Include="Files\Pictures\bkp_main.png" />
+    <Content Include="Files\Pictures\bkp_success.png" />
+    <Content Include="Files\Pictures\connection.png" />
+    <Content Include="Files\Pictures\ok.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

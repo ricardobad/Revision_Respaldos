@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL_Revision_Respaldos
+namespace BLL_Revision_Respaldos.Process
 {
-    public class Class1
+    public class cls_process_BLL
     {
     }
 }

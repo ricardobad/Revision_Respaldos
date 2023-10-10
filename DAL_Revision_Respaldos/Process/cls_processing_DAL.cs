@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL_Revision_Respaldos
+namespace DAL_Revision_Respaldos.Process
 {
-    public class Class1
+    public class cls_processing_DAL
     {
+        
     }
 }
