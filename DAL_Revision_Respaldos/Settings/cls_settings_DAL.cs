@@ -10,7 +10,7 @@ namespace DAL_Revision_Respaldos.Settings
     {
 
         #region Private
-        private string _sSharedPath, _sFile, _sFileDate, _sErrorMsj;
+        private string _sSharedPath, _sFile, _sFileDate, _sErrorMsj, _sSoftwarePath, _sSoftwareFile;
         private string[] _aFileDirectory;
 
         private List<string> _lsFolderList;
@@ -25,6 +25,8 @@ namespace DAL_Revision_Respaldos.Settings
         public string sErrorMsj { get => _sErrorMsj; set => _sErrorMsj = value; }
         public List<string> lsFolderList { get => _lsFolderList; set => _lsFolderList = value; }
         public int iCount { get => _iCount; set => _iCount = value; }
+        public string sSoftwarePath { get => _sSoftwarePath; set => _sSoftwarePath = value; }
+        public string sSoftwareFile { get => _sSoftwareFile; set => _sSoftwareFile = value; }
         #endregion
     }
 }

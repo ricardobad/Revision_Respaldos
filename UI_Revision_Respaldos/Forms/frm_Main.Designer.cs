@@ -56,10 +56,11 @@ namespace UI_Revision_Respaldos.Forms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fLP_autoResize.AutoScroll = true;
+            this.fLP_autoResize.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.fLP_autoResize.Controls.Add(this.tls_Menu);
             this.fLP_autoResize.Location = new System.Drawing.Point(3, 2);
             this.fLP_autoResize.Name = "fLP_autoResize";
-            this.fLP_autoResize.Size = new System.Drawing.Size(1065, 50);
+            this.fLP_autoResize.Size = new System.Drawing.Size(1240, 50);
             this.fLP_autoResize.TabIndex = 2;
             // 
             // tls_Menu
@@ -90,14 +91,14 @@ namespace UI_Revision_Respaldos.Forms
             // tls_btn_item1
             // 
             this.tls_btn_item1.Name = "tls_btn_item1";
-            this.tls_btn_item1.Size = new System.Drawing.Size(270, 34);
+            this.tls_btn_item1.Size = new System.Drawing.Size(260, 34);
             this.tls_btn_item1.Text = "Add Path";
             this.tls_btn_item1.Click += new System.EventHandler(this.tls_btn_item1_Click);
             // 
             // deleteOrEditPathToolStripMenuItem
             // 
             this.deleteOrEditPathToolStripMenuItem.Name = "deleteOrEditPathToolStripMenuItem";
-            this.deleteOrEditPathToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.deleteOrEditPathToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             this.deleteOrEditPathToolStripMenuItem.Text = "Delete or edit Path";
             // 
             // toolStripButton2
@@ -182,10 +183,9 @@ namespace UI_Revision_Respaldos.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1072, 642);
+            this.ClientSize = new System.Drawing.Size(1247, 642);
             this.Controls.Add(this.fLP_autoResize);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_Main";
             this.Text = "Backup Checker";

@@ -13,8 +13,8 @@ namespace BLL_Revision_Respaldos.Settings
     {
         public void obtenerInfo(ref cls_settings_DAL DAL_sett)
         {
-            // llamada a ruta de carpeta compartida    DAL_sett.sSharedPath = 
-            //DAL_sett.sSharedPath = @"\\fileserver\Publico\WSUS";
+            // llamada a ruta de carpeta compartida    
+            
             try
             {
                 DAL_sett.aFileDirectory = Directory.GetFiles(DAL_sett.sSharedPath);
@@ -24,15 +24,14 @@ namespace BLL_Revision_Respaldos.Settings
                     FileInfo fileInfo = new FileInfo(file);
                     DAL_sett.sFile = Convert.ToString(fileInfo.Name);
                     DAL_sett.sFileDate = Convert.ToString(fileInfo.LastWriteTime);
-                    //Console.WriteLine($"Nombre del archivo: {fileInfo.Name}");
-                    //Console.WriteLine($"Hora de modificación: {fileInfo.LastWriteTime}");
+                    
                 }
                 DAL_sett.sErrorMsj = "";
             }
 
             catch (Exception ex)
             {
-                DAL_sett.sErrorMsj = "An error has ocurred " + ex.Message;
+                DAL_sett.sErrorMsj = "An error has ocurred : \n" + ex.Message;
             }
 
 
@@ -41,9 +40,45 @@ namespace BLL_Revision_Respaldos.Settings
 
         public void addFolders(ref cls_settings_DAL DAL) 
         {
-            DAL.lsFolderList.Add(DAL.sSharedPath);
-            DAL.iCount = DAL.lsFolderList.Count;
+            //dont allow duplicate
+
+            if (DAL.lsFolderList.Contains(DAL.sSharedPath))
+            {
+                DAL.sErrorMsj = "This path already exists, try adding another path";
+                return;
+            }
+
+            else 
+            { 
             
+                //set shared folder as new location
+                DAL.lsFolderList.Add(DAL.sSharedPath);
+                //create a count for new folders
+                DAL.iCount = DAL.lsFolderList.Count+1;
+
+                //software path and save data
+                DAL.sSoftwarePath= AppDomain.CurrentDomain.BaseDirectory;
+                DAL.sSoftwareFile= Path.Combine(DAL.sSoftwarePath, "data.txt");
+                File.WriteAllLines("data.txt", DAL.lsFolderList);
+            }
+        }
+
+
+        public void readFile(ref cls_settings_DAL DAL) 
+        {
+            DAL.lsFolderList = new List<string>();
+            //software path
+            DAL.sSoftwarePath = AppDomain.CurrentDomain.BaseDirectory;
+            DAL.sSoftwareFile = Path.Combine(DAL.sSoftwarePath, "data.txt");
+
+            //read config files of paths
+            if (File.Exists("data.txt"))
+            {
+                DAL.lsFolderList.AddRange(File.ReadAllLines("data.txt"));
+            }
+
+
+
         }
     }
 }

@@ -48,10 +48,6 @@ namespace UI_Revision_Respaldos.Forms
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            //obj_DAL.sSharedPath = txt_UNCPath.Text;
-            //obj_it.bFlag = Convert.ToByte(cmb_ServerSelect.SelectedIndex);
-
-            //if user didn't click Test Connection before Save Button, test connection before save it
             testConnection(ref obj_DAL);
 
         }
@@ -60,7 +56,33 @@ namespace UI_Revision_Respaldos.Forms
         {
             OBJ_DAL.sSharedPath = txt_UNCPath.Text.Trim();
             obj_bll.obtenerInfo(ref OBJ_DAL);
-            MessageBox.Show("Resultado: \n "+ OBJ_DAL.sFile + "\n" + OBJ_DAL.sFileDate);
+            if (obj_DAL.sErrorMsj == "")
+            {
+                obj_bll.readFile(ref OBJ_DAL);
+                
+            }
+
+            if (obj_DAL.sErrorMsj == "") 
+            {
+                obj_bll.addFolders(ref OBJ_DAL);
+
+                if (obj_DAL.sErrorMsj == "")
+                {
+                    MessageBox.Show("Resultado: \n " + obj_DAL.sFile + "\n" + obj_DAL.sFileDate);
+                }
+                else 
+                {
+                    MessageBox.Show(obj_DAL.sErrorMsj, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
+            }
+
+            else
+            {
+                MessageBox.Show(obj_DAL.sErrorMsj, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
     }
