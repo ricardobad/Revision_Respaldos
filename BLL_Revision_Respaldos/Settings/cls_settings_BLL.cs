@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using DAL_Revision_Respaldos.Settings;
+using System.Data;
 
 
 namespace BLL_Revision_Respaldos.Settings
@@ -13,20 +14,14 @@ namespace BLL_Revision_Respaldos.Settings
     {
         public void obtenerInfo(ref cls_settings_DAL DAL_sett)
         {
-            // llamada a ruta de carpeta compartida    
-            
+            // shared file path    
+
             try
             {
-                DAL_sett.aFileDirectory = Directory.GetFiles(DAL_sett.sSharedPath);
-
-                foreach (string file in DAL_sett.aFileDirectory)
-                {
-                    FileInfo fileInfo = new FileInfo(file);
+                    FileInfo fileInfo = new FileInfo(DAL_sett.sSharedPath);
                     DAL_sett.sFile = Convert.ToString(fileInfo.Name);
                     DAL_sett.sFileDate = Convert.ToString(fileInfo.LastWriteTime);
-                    
-                }
-                DAL_sett.sErrorMsj = "";
+                    DAL_sett.sErrorMsj = "";
             }
 
             catch (Exception ex)
@@ -38,7 +33,7 @@ namespace BLL_Revision_Respaldos.Settings
 
         }
 
-        public void addFolders(ref cls_settings_DAL DAL) 
+        public void addFolders(ref cls_settings_DAL DAL)
         {
             //dont allow duplicate
 
@@ -48,23 +43,23 @@ namespace BLL_Revision_Respaldos.Settings
                 return;
             }
 
-            else 
-            { 
-            
+            else
+            {
+
                 //set shared folder as new location
                 DAL.lsFolderList.Add(DAL.sSharedPath);
                 //create a count for new folders
-                DAL.iCount = DAL.lsFolderList.Count+1;
+                DAL.iCount = DAL.lsFolderList.Count + 1;
 
                 //software path and save data
-                DAL.sSoftwarePath= AppDomain.CurrentDomain.BaseDirectory;
-                DAL.sSoftwareFile= Path.Combine(DAL.sSoftwarePath, "data.txt");
+                DAL.sSoftwarePath = AppDomain.CurrentDomain.BaseDirectory;
+                DAL.sSoftwareFile = Path.Combine(DAL.sSoftwarePath, "data.txt");
                 File.WriteAllLines("data.txt", DAL.lsFolderList);
             }
         }
 
 
-        public void readFile(ref cls_settings_DAL DAL) 
+        public void readFile(ref cls_settings_DAL DAL)
         {
             DAL.lsFolderList = new List<string>();
             //software path
@@ -75,9 +70,23 @@ namespace BLL_Revision_Respaldos.Settings
             if (File.Exists("data.txt"))
             {
                 DAL.lsFolderList.AddRange(File.ReadAllLines("data.txt"));
+                //test
+                createDatatable(ref DAL);
             }
 
 
+
+        }
+
+        public void createDatatable(ref cls_settings_DAL DAL)
+        {
+            DAL.dtData = new DataTable();
+            DAL.dtData.Columns.Add("Ruta Archivo");
+            DAL.dtData.Columns.Add("Fecha");
+            for (int i = 0; i < DAL.lsFolderList.Count; i++)
+            {
+                DAL.dtData.Rows.Add(DAL.lsFolderList[i]);
+            }
 
         }
     }

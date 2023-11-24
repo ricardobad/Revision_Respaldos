@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DAL_Revision_Respaldos.Settings
 {
@@ -15,6 +16,7 @@ namespace DAL_Revision_Respaldos.Settings
 
         private List<string> _lsFolderList;
         private int _iCount;
+        private DataTable _dtData;
         #endregion
 
         #region Public
@@ -27,6 +29,7 @@ namespace DAL_Revision_Respaldos.Settings
         public int iCount { get => _iCount; set => _iCount = value; }
         public string sSoftwarePath { get => _sSoftwarePath; set => _sSoftwarePath = value; }
         public string sSoftwareFile { get => _sSoftwareFile; set => _sSoftwareFile = value; }
+        public DataTable dtData { get => _dtData; set => _dtData = value; }
         #endregion
     }
 }

@@ -33,10 +33,11 @@ namespace UI_Revision_Respaldos.Forms
         {
             cmb_ServerSelect.Items.Clear();
 
-            for(int i = 0; i< DAL_items.aServers.Length; i++)
-            {
-                cmb_ServerSelect.Items.Add(DAL_items.aServers[i]);
-            }
+            //CARGA de tabs de acuerdo a lo que vaya agregando el user
+            //for(int i = 0; i< DAL_items.aServers.Length; i++)
+            //{
+            //    cmb_ServerSelect.Items.Add(DAL_items.aServers[i]);
+            //}
 
             
         }
@@ -48,7 +49,28 @@ namespace UI_Revision_Respaldos.Forms
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            testConnection(ref obj_DAL);
+            //check file extension
+            if (txt_UNCPath.Text.Contains(".dat")|| txt_UNCPath.Text.Contains(".bak"))
+            {
+                testConnection(ref obj_DAL);
+                //if not exist errors, close window and add path window
+                if (obj_DAL.sErrorMsj == "")
+                {
+                    //add path window  AQUI SE LLAMA AL METODO QUE MANDA EL INFO
+                    //DEL DATATABLE al DATAGRID VIEW
+                }
+            }
+            else
+            
+            {
+                
+                MessageBox.Show("Debe escribir la ruta completa del archivo incluyendo la extension " +
+                    "del archivo  (.dat, .bak) ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+
+            
 
         }
 
